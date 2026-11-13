@@ -1,4 +1,4 @@
-/* Creative Evaluation Lab — original demonstration by Victor Nwoke.
+/* Creative Evaluation Lab - original demonstration by Victor Nwoke.
    Standalone, dependency-free. All project data is synthetic.
    Weighted score (0–100): sum(score / 5 * criterion weight).
    Critical flags do not alter score; they block readiness verdict. */
@@ -44,9 +44,9 @@
   function persist(){try{localStorage.setItem(VERSION,JSON.stringify(state))}catch{/* storage optional */}}
   function score(side){return CRITERIA.reduce((t,c)=>t+(state.scores[c.id][side]/5*c.weight),0)}
   function fmt(n){return n.toFixed(1)}
-  function status(side){if(side==='a'?state.criticalA:state.criticalB) return {text:'Blocked — critical requirement missing',kind:'blocked'};
-    const val = score(side); if(val>=80) return {text:'Strong candidate — validate before launch',kind:'strong'};
-    if(val>=65) return {text:'Promising — targeted revisions required',kind:'revise'};
+  function status(side){if(side==='a'?state.criticalA:state.criticalB) return {text:'Blocked - critical requirement missing',kind:'blocked'};
+    const val = score(side); if(val>=80) return {text:'Strong candidate - validate before launch',kind:'strong'};
+    if(val>=65) return {text:'Promising - targeted revisions required',kind:'revise'};
     return {text:'Major revision required',kind:'blocked'};
   }
   function decision(){
@@ -118,7 +118,7 @@
   function escapeMd(s){return String(s||'').replace(/\|/g,'\\|')}
   function reportContent(){
     const d=decision();const today=new Date().toISOString().slice(0,10);
-    const lines=[`# Creative Evaluation Report`, '',`**Project:** FIELDWORK — Weekend Workshop Landing Page (fictional client)`,`**Prepared by:** Victor Nwoke · Original demonstration`,`**Export date:** ${today}`,`**Context:** Synthetic portfolio work, not a Mercor rubric or real AI model comparison.`,'',`## Decision`,`**${d.headline}**`,'',d.summary,'',`## Weighted scorecard`,'','| Criterion | Weight | A (0–5) | B (0–5) | A evidence | B evidence |','|---|---:|---:|---:|---|---|'];
+    const lines=[`# Creative Evaluation Report`, '',`**Project:** FIELDWORK - Weekend Workshop Landing Page (fictional client)`,`**Prepared by:** Victor Nwoke · Original demonstration`,`**Export date:** ${today}`,`**Context:** Synthetic portfolio work, not a Mercor rubric or real AI model comparison.`,'',`## Decision`,`**${d.headline}**`,'',d.summary,'',`## Weighted scorecard`,'','| Criterion | Weight | A (0–5) | B (0–5) | A evidence | B evidence |','|---|---:|---:|---:|---|---|'];
     for(const c of CRITERIA){const s=state.scores[c.id];lines.push(`| ${c.name} | ${c.weight}% | ${s.a} | ${s.b} | ${escapeMd(s.evidenceA).replace(/\n/g,' ')} | ${escapeMd(s.evidenceB).replace(/\n/g,' ')} |`)}
     lines.push('',`**Total A:** ${fmt(d.a)}/100 · **Total B:** ${fmt(d.b)}/100`,'',`**Critical failure A:** ${state.criticalA?'Yes':'No'}`,`**Critical failure B:** ${state.criticalB?'Yes':'No'}`,'',`**Readiness A:** ${d.sA.text}`,`**Readiness B:** ${d.sB.text}`,'','## Written judgement','',state.rationale,'','## Recommended next steps','',state.next,'','---','**Method:** Each criterion has an integer rating 0–5, multiplied by its weight divided by 5. Weights total 100%. Critical flags block readiness but do not modify numeric totals. The brief, entries and submissions are fictional examples.');
     return lines.join('\n');
@@ -129,7 +129,7 @@
   qsa('[data-device]').forEach(b=>b.addEventListener('click',()=>{const mobile=b.dataset.device==='mobile';qs('#comparison-grid').classList.toggle('is-mobile',mobile);qsa('[data-device]').forEach(el=>{const active=el===b;el.classList.toggle('is-selected',active);el.setAttribute('aria-pressed',String(active))})}));
   qs('#browse-workshops').addEventListener('click',()=>{qs('#a-workshops').scrollIntoView({behavior:'smooth',block:'center'})});
   qs('#book-open').addEventListener('click',()=>qs('#booking-dialog').showModal());
-  qs('#demo-confirm').addEventListener('click',()=>{qs('#booking-dialog').close();notify('Demo session selected — no booking made.');});
+  qs('#demo-confirm').addEventListener('click',()=>{qs('#booking-dialog').close();notify('Demo session selected - no booking made.');});
   qs('#criteria-list').addEventListener('change',e=>{
     if(!e.target.matches('select[data-criterion]'))return;
     const {criterion,side}=e.target.dataset;state.scores[criterion][side]=Number(e.target.value);updateTotals();updateReport();persist();

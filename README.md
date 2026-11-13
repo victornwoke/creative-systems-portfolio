@@ -1,4 +1,4 @@
-# Victor Nwoke — Creative Portfolio + Evaluation Lab
+# Victor Nwoke - Creative Portfolio + Evaluation Lab
 
 This is a static, dependency-free implementation. The existing portfolio has been enhanced with a standalone interactive creative evaluation exercise.
 
